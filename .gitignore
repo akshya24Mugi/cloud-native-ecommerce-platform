@@ -1,0 +1,25 @@
+# Python dependencies
+venv/
+__pycache__/
+*.pyc
+
+
+# Environment Files
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Docker
+grafana-data/
+prometheus-data/
+
+# Python cache
+.pytest_cache/
+
+# MISC...
+*.log
