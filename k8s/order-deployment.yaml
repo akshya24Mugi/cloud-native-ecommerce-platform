@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: order-service
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: order-service
+
+  template:
+    metadata:
+      labels:
+        app: order-service
+    
+    spec:
+      containers:
+      - name: order-service
+        
+        image: akshaya1234/order-service:v1
+
+        imagePullPolicy: Always
+
+        ports:
+        - containerPort: 5700
+
+        env:
+        - name: DATABASE_URL
+          value: postgresql://postgres:akshay1234@postgres:5432/orders_db

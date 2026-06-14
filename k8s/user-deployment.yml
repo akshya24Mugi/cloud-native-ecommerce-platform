@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: user-service
+
+spec:
+  replicas: 1
+
+  selector: 
+    matchLabels:
+      app: user-service
+
+  template:
+    
+    metadata:
+      labels: 
+        app: user-service
+        
+    spec:
+      containers:
+      - name: user-service
+        image: akshaya1234/user-service:v1
+        imagePullPolicy: Always
+
+        ports:
+        - containerPort: 5400
+
+        env:
+        - name: DATABASE_URL
+          value: postgresql://postgres:akshay1234@postgres:5432/users_db
+    
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: SECRET_KEY
+
+        - name: JWT_ALGORITHM
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: JWT_ALGORITHM
+        
+        - name: ACCESS_TOKEN_EXPIRE_MINUTES
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: ACCESS_TOKEN_EXPIRE_MINUTES

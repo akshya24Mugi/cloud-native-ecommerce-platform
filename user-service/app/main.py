@@ -17,4 +17,4 @@ app.include_router(router)
 
 @app.get("/")
 def root():
-    return {"message": "User service is running"}
+    return {"message": "User service V2"}

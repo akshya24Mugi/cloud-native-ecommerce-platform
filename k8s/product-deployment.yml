@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: product-service
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: product-service
+    
+  template:
+    metadata:
+      labels:
+        app: product-service
+      
+    
+    spec:
+      containers:
+      - name: product-service
+
+        image: akshaya1234/product-service:v1
+
+        imagePullPolicy: Always
+
+        ports:
+        - containerPort: 5500
+
+        env:
+          - name: DATABASE_URL
+            value: postgresql://postgres:akshay1234@postgres:5432/products_db
